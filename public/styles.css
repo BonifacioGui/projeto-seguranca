@@ -1,0 +1,132 @@
+/* --- Configurações Gerais da Página (Tema Escuro) --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* --- O Container Principal --- */
+.container {
+    display: flex;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 105, 92, 0.25);
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+    border: 1px solid #2c2c2c;
+}
+
+/* --- Coluna da Esquerda (Informações) --- */
+.info-panel {
+    background-color: #004d40;
+    color: #e0e0e0;
+    padding: 3rem;
+    flex-basis: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.info-panel h2 { color: #ffffff; margin-top: 0; font-size: 2rem; }
+.info-panel p { font-size: 1.1rem; line-height: 1.5; color: #b2dfdb; }
+
+/* --- Coluna da Direita (Formulários) --- */
+.forms-panel {
+    padding: 2rem 3rem;
+    flex-basis: 60%;
+    display: flex;
+    flex-direction: column; /* Organiza os elementos em coluna */
+}
+
+/* --- ESTILOS DAS ABAS --- */
+.tab-buttons {
+    display: flex;
+    border-bottom: 2px solid #2c2c2c;
+    margin-bottom: 1.5rem;
+}
+.tab-link {
+    background-color: transparent;
+    border: none;
+    padding: 1rem 0.5rem;
+    margin-right: 1.5rem;
+    cursor: pointer;
+    color: #bdbdbd;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: color 0.2s, border-bottom 0.2s;
+    border-bottom: 3px solid transparent;
+}
+.tab-link:hover {
+    color: #ffffff;
+}
+.tab-link.active {
+    color: #009688; /* Verde mais vibrante para a aba ativa */
+    border-bottom: 3px solid #009688;
+}
+.tab-content {
+    display: none; /* Esconde todas as abas por padrão */
+}
+.tab-content h3 {
+    margin-top: 0;
+    color: #ffffff;
+}
+
+/* --- Estilos dos Formulários (Inputs, Botões, etc.) --- */
+.form-group { margin-bottom: 1.5rem; }
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #2c2c2c;
+    border: 1px solid #4f4f4f;
+    border-radius: 6px;
+    box-sizing: border-box;
+    color: #e0e0e0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    border-color: #00796b;
+    box-shadow: 0 0 5px rgba(0, 121, 107, 0.5);
+}
+button {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #00695C;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+button:hover { background-color: #00796b; }
+
+/* --- Div de Resultado --- */
+#resultado {
+    margin-top: auto; /* EMPURRA A DIV DE RESULTADO PARA O FINAL */
+    padding: 1rem;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    min-height: 20px;
+    transition: all 0.3s ease;
+}
+.sucesso { background-color: rgba(0, 105, 92, 0.3); color: #80cbc4; border: 1px solid #004d40; }
+.erro { background-color: rgba(211, 47, 47, 0.2); color: #ef9a9a; border: 1px solid #d32f2f; }
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    body { padding: 0; }
+    .container { flex-direction: column; max-width: 100%; height: 100%; border-radius: 0; border: none; }
+    .info-panel, .forms-panel { flex-basis: auto; }
+    .info-panel { padding: 2rem; text-align: center; }
+    .forms-panel { padding: 2rem; flex-grow: 1; }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Login Seguro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Coluna da Esquerda: Boas-vindas -->
+        <div class="info-panel">
+            <h2>Atividade de Segurança</h2>
+            <p>Use os formulários ao lado para registrar, logar ou alterar sua senha de forma segura com Bcrypt.</p>
+        </div>
+
+        <!-- Coluna da Direita: Formulários com Abas -->
+        <div class="forms-panel">
+            <!-- Botões das Abas -->
+            <div class="tab-buttons">
+                <button class="tab-link active" onclick="openTab(event, 'registrar')">Registrar</button>
+                <button class="tab-link" onclick="openTab(event, 'login')">Login</button>
+                <button class="tab-link" onclick="openTab(event, 'alterar')">Alterar Senha</button>
+            </div>
+
+            <!-- Conteúdo da Aba de Registro -->
+            <div id="registrar" class="tab-content" style="display: block;">
+                <h3>Novo Usuário</h3>
+                <div class="form-group">
+                    <input type="text" id="regUsuario" placeholder="Nome de usuário">
+                    <input type="password" id="regSenha" placeholder="Senha" style="margin-top: 0.5rem;">
+                    <button onclick="registrar()" style="margin-top: 1rem;">Confirmar Registro</button>
+                </div>
+            </div>
+
+            <!-- Conteúdo da Aba de Login -->
+            <div id="login" class="tab-content">
+                <h3>Acessar Conta</h3>
+                <div class="form-group">
+                    <input type="text" id="loginUsuario" placeholder="Nome de usuário">
+                    <input type="password" id="loginSenha" placeholder="Senha" style="margin-top: 0.5rem;">
+                    <button onclick="login()" style="margin-top: 1rem;">Entrar</button>
+                </div>
+            </div>
+            
+            <!-- Conteúdo da Aba de Alterar Senha -->
+            <div id="alterar" class="tab-content">
+                <h3>Mudar Senha</h3>
+                <div class="form-group">
+                    <input type="text" id="altUsuario" placeholder="Nome de usuário">
+                    <input type="password" id="altNovaSenha" placeholder="Nova Senha" style="margin-top: 0.5rem;">
+                    <button onclick="alterarSenha()" style="margin-top: 1rem;">Confirmar Alteração</button>
+                </div>
+            </div>
+
+            <!-- Div de resultado agora fica aqui, sempre visível -->
+            <div id="resultado"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
