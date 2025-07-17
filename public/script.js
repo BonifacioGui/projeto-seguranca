@@ -1,5 +1,7 @@
+// Define a URL base da sua API
 const apiUrl = 'http://localhost:3000';
 
+// Pega a referência da div de resultado
 const resultadoDiv = document.getElementById('resultado');
 
 /**
@@ -33,8 +35,9 @@ function openTab(evt, tabName) {
  * Função genérica para fazer requisições à API.
  * @param {string} endpoint - A rota da API (ex: '/registrar').
  * @param {object} corpo - O corpo da requisição.
+ * @param {string[]} idsParaLimpar - Um array com os IDs dos inputs a serem limpos em caso de sucesso.
  */
-async function fazerRequisicao(endpoint, corpo) {
+async function fazerRequisicao(endpoint, corpo, idsParaLimpar = []) {
     try {
         const resposta = await fetch(`${apiUrl}${endpoint}`, {
             method: 'POST',
@@ -49,6 +52,17 @@ async function fazerRequisicao(endpoint, corpo) {
         if (resposta.ok) {
             resultadoDiv.innerText = dados.mensagem;
             resultadoDiv.classList.add('sucesso');
+
+            // --- NOVA LÓGICA ADICIONADA AQUI ---
+            // Limpa os campos de input se a requisição for bem-sucedida.
+            idsParaLimpar.forEach(id => {
+                const campo = document.getElementById(id);
+                if (campo) {
+                    campo.value = "";
+                }
+            });
+            // ------------------------------------
+
         } else {
             resultadoDiv.innerText = dados.erro;
             resultadoDiv.classList.add('erro');
@@ -63,22 +77,22 @@ async function fazerRequisicao(endpoint, corpo) {
 function registrar() {
     const nome_usuario = document.getElementById('regUsuario').value;
     const senha = document.getElementById('regSenha').value;
-    fazerRequisicao('/registrar', { nome_usuario, senha });
+    // Passa a lista de IDs dos campos de registro
+    fazerRequisicao('/registrar', { nome_usuario, senha }, ['regUsuario', 'regSenha']);
 }
 
 function login() {
     const nome_usuario = document.getElementById('loginUsuario').value;
     const senha = document.getElementById('loginSenha').value;
-    fazerRequisicao('/login', { nome_usuario, senha });
+    // Passa a lista de IDs dos campos de login
+    fazerRequisicao('/login', { nome_usuario, senha }, ['loginUsuario', 'loginSenha']);
 }
 
 // Função para alterar a senha (versão segura)
 function alterarSenha() {
     const nome_usuario = document.getElementById('altUsuario').value;
-    // Pega o valor do novo campo
     const senha_atual = document.getElementById('altSenhaAtual').value;
     const nova_senha = document.getElementById('altNovaSenha').value;
-
-    // Envia os três campos para a API
-    fazerRequisicao('/alterar-senha', { nome_usuario, senha_atual, nova_senha });
+    // Passa a lista de IDs dos campos de alteração de senha
+    fazerRequisicao('/alterar-senha', { nome_usuario, senha_atual, nova_senha }, ['altUsuario', 'altSenhaAtual', 'altNovaSenha']);
 }
