@@ -1,7 +1,5 @@
-// Define a URL base da sua API
 const apiUrl = 'http://localhost:3000';
 
-// Pega a referência da div de resultado
 const resultadoDiv = document.getElementById('resultado');
 
 /**
@@ -46,7 +44,7 @@ async function fazerRequisicao(endpoint, corpo) {
 
         const dados = await resposta.json();
 
-        resultadoDiv.className = ""; // Limpa classes antigas
+        resultadoDiv.className = ""; 
 
         if (resposta.ok) {
             resultadoDiv.innerText = dados.mensagem;
@@ -74,8 +72,13 @@ function login() {
     fazerRequisicao('/login', { nome_usuario, senha });
 }
 
+// Função para alterar a senha (versão segura)
 function alterarSenha() {
     const nome_usuario = document.getElementById('altUsuario').value;
+    // Pega o valor do novo campo
+    const senha_atual = document.getElementById('altSenhaAtual').value;
     const nova_senha = document.getElementById('altNovaSenha').value;
-    fazerRequisicao('/alterar-senha', { nome_usuario, nova_senha });
+
+    // Envia os três campos para a API
+    fazerRequisicao('/alterar-senha', { nome_usuario, senha_atual, nova_senha });
 }
